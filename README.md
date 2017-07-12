@@ -1,2 +1,13 @@
 # jenkins2-example
-Jenkins Docker Terraform
+
+A simple jenkins docker setup
+
+## setup
+
+Setup registry and socat proxy
+
+    make setup-docker
+
+Setup jenkins container
+
+    terraform apply
