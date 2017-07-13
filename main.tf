@@ -6,10 +6,17 @@ provider "docker" {
 resource "docker_container" "jenkins" {
     image = "${docker_image.jenkins.latest}"
     name  = "jenkins2"
-    volumes = {
-        host_path      = "${path.cwd}/jenkins_home"
-        container_path = "/var/jenkins_home"    
-    }
+    privileged = true
+    volumes = [
+        {
+            host_path      = "${path.cwd}/jenkins_home"
+            container_path = "/var/jenkins_home"
+        },
+        {
+            host_path      = "/var/run/docker.sock"
+            container_path = "/docker.sock"
+        }
+    ]
     ports = [
         {
             internal = 50000
